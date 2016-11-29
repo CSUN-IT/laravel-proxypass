@@ -1,0 +1,22 @@
+{
+    "name": "csun-metalab/laravel-proxypass",
+    "description": "Composer package for Laravel that resolves the correct absolute URLs when behind a proxy",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthew Fritz",
+            "email": "matthew.fritz@csun.edu"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/routing": "5.2.*"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-0": {
+            "CSUNMetaLab": "src/"
+        }
+    }
+}
