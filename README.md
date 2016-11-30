@@ -11,20 +11,20 @@ composer require csun-metalab/laravel-proxypass
 
 ## Installation
 
-1. Add the following lines to your .env file to leverage the proxy attributes:
+First, add the following lines to your .env file to leverage the proxy attributes:
 
 ```
 PROXY_ACTIVE=true
 PROXY_PATH_HEADER=HTTP_X_FORWARDED_PATH
 ```
 
-2. Run the following Artisan command to publish the configuration:
+Next, run the following Artisan command to publish the configuration:
 
 ```
 php artisan vendor:publish
 ```
 
-3. Add the service provider to your 'providers' array in Laravel as follows:
+Finally, add the service provider to your 'providers' array in Laravel as follows:
 
 ```
 'providers' => [
@@ -33,3 +33,16 @@ php artisan vendor:publish
    ...
 ]
 ```
+
+## Environment Variables
+
+The two environment variables you added to your .env file are the following:
+
+### PROXY_ACTIVE
+
+Set this to `true` to enable the proxying functionality or `false` to disable it.
+
+### PROXY_PATH_HEADER
+
+This is the PHP-interpreted value of the request header sent from your proxy. The
+default is `HTTP_X_FORWARDED_PATH` (the computed value of `X-Forwarded-Path`)
