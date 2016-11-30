@@ -18,7 +18,7 @@ class ProxyPassServiceProvider extends ServiceProvider
 
 	public function boot() {
 		$this->publishes([
-        	__DIR__.'/config/proxypass.php' => config_path('proxypass.php'),
+        	__DIR__.'/../config/proxypass.php' => config_path('proxypass.php'),
     	]);
 	}
 

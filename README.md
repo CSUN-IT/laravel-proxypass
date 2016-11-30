@@ -18,13 +18,7 @@ PROXY_ACTIVE=true
 PROXY_PATH_HEADER=HTTP_X_FORWARDED_PATH
 ```
 
-Next, run the following Artisan command to publish the configuration:
-
-```
-php artisan vendor:publish
-```
-
-Finally, add the service provider to your 'providers' array in Laravel as follows:
+Next, add the service provider to your 'providers' array in Laravel as follows:
 
 ```
 'providers' => [
@@ -32,6 +26,12 @@ Finally, add the service provider to your 'providers' array in Laravel as follow
    CSUNMetaLab\ProxyPass\Providers\ProxyPassServiceProvider,
    ...
 ]
+```
+
+Finally, run the following Artisan command to publish the configuration:
+
+```
+php artisan vendor:publish
 ```
 
 ## Environment Variables
