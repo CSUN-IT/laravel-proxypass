@@ -6,7 +6,7 @@ This package is built for version 5.2 of Laravel and on.
 To install from Composer, use the following command:
 
 ```
-composer require csun-metalab/laravel-proxypass:dev-master
+composer require csun-metalab/laravel-proxypass
 ```
 
 ## Installation
