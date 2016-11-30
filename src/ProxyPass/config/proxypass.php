@@ -10,7 +10,7 @@ return [
     | Determines whether the rewriting of the URLs is active. Default is true.
     |
     */
-    'proxy_active' => env("PROXY_ACTIVE", true);
+    'proxy_active' => env("PROXY_ACTIVE", true),
 
     /*
     |--------------------------------------------------------------------------
@@ -47,6 +47,6 @@ return [
     | base URL from the proxy. Defaults to "HTTP_X_FORWARDED_PATH".
     |
     */
-    'proxy_path_header' => env("PROXY_PATH_HEADER", "HTTP_X_FORWARDED_PATH");
+    'proxy_path_header' => env("PROXY_PATH_HEADER", "HTTP_X_FORWARDED_PATH"),
 
 ];
