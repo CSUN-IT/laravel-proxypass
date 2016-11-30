@@ -2,7 +2,7 @@
 Composer package for Laravel that resolves the correct absolute URLs when behind a proxy
 
 This package is built for version 5.0 of Laravel and above. It modifies the functionality
-of the url(), asset(), and other helper methods.
+of the `url()`, `asset()`, and other helper methods.
 
 To install from Composer, use the following command:
 
@@ -55,7 +55,7 @@ not the location you want to show to the world. Instead, you want to show a URL 
 `http://www.example.com/laravel` so you place your Laravel application behind a proxy.
 
 However, you notice that while the front page loads properly, none of the URLs you
-have written with the url(), asset(), or other helpers work with that URL and instead
+have written with the `url()`, `asset()`, or other helpers work with that URL and instead
 continue writing `http://laravel.example.com` as their base path.
 
 You can configure your proxy to add a request header along with your `ProxyPass` and
@@ -71,5 +71,5 @@ RequestHeader set X-Forwarded-Path "http://www.example.com/laravel"
 </Location>
 ```
 
-Now all of your URLs using the url(), asset(), and other helpers will be written
+Now all of your URLs using the `url()`, `asset()`, and other helpers will be written
 correctly!
