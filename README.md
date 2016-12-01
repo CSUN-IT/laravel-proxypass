@@ -19,14 +19,19 @@ PROXY_ACTIVE=true
 PROXY_PATH_HEADER=HTTP_X_FORWARDED_PATH
 ```
 
-Next, add the service provider to your 'providers' array in Laravel as follows:
+Next, add the service provider to your `providers` array in Laravel as follows:
 
 ```
 'providers' => [
-   ...
-   CSUNMetaLab\ProxyPass\Providers\ProxyPassServiceProvider,
-   ...
-]
+   //...
+
+   'CSUNMetaLab\ProxyPass\Providers\ProxyPassServiceProvider',
+
+   // You can also use the following depending on Laravel convention:
+   // CSUNMetaLab\ProxyPass\Providers\ProxyPassServiceProvider::class
+
+   //...
+],
 ```
 
 Finally, run the following Artisan command to publish the configuration:
