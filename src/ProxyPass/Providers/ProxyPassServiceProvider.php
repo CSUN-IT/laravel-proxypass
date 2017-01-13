@@ -9,13 +9,6 @@ use URL;
 
 class ProxyPassServiceProvider extends ServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
 	public function register() {
 		if(Config::get('proxypass.proxy_active')) {
             // if we already have a URL forced via the .env file, don't attempt
