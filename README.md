@@ -19,16 +19,26 @@ PROXY_ACTIVE=true
 PROXY_PATH_HEADER=HTTP_X_FORWARDED_PATH
 ```
 
+You may also add the following optional lines to your .env file to leverage the ability to FORCE the URL and schema without having to pass through a load balancer or proxy:
+
+```
+# http or https: PUBLIC_SCHEMA_OVERRIDE=https
+PUBLIC_SCHEMA_OVERRIDE=
+
+# Example: PUBLIC_URL_OVERRIDE=http://some-other-domain.example.com/some-other-directory
+PUBLIC_URL_OVERRIDE=
+```
+
 Next, add the service provider to your `providers` array in Laravel as follows:
 
 ```
 'providers' => [
    //...
 
-   'CSUNMetaLab\ProxyPass\Providers\ProxyPassServiceProvider',
+   CSUNMetaLab\ProxyPass\Providers\ProxyPassServiceProvider::class,
 
    // You can also use the following depending on Laravel convention:
-   // CSUNMetaLab\ProxyPass\Providers\ProxyPassServiceProvider::class
+   // 'CSUNMetaLab\ProxyPass\Providers\ProxyPassServiceProvider',
 
    //...
 ],
