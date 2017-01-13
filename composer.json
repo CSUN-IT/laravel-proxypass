@@ -14,9 +14,9 @@
     },
     "minimum-stability": "stable",
     "autoload": {
-        "classmap": {
+        "classmap": [
             "src/ProxyPass/"
-        },
+        ],
         "psr-0": {
             "CSUNMetaLab\\ProxyPass\\": "src/ProxyPass/"
         }
