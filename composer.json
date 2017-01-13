@@ -12,11 +12,11 @@
     "require": {
         "php": ">=5.5.9"
     },
-    "require-dev": {
-        "laravel/laravel": "5.2.*"
-    },
     "minimum-stability": "stable",
     "autoload": {
+        "classmap": {
+            "src/ProxyPass/"
+        },
         "psr-0": {
             "CSUNMetaLab\\ProxyPass\\": "src/ProxyPass/"
         }

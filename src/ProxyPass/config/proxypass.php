@@ -26,7 +26,7 @@ return [
     | of the typical "http://[domain]/[application path]/public" prefix.
     |
     */
-    'public_url_override' => "",
+    'public_url_override' => env("PUBLIC_URL_OVERRIDE", ""),
 
     /*
     |--------------------------------------------------------------------------
@@ -36,7 +36,7 @@ return [
     | Overrides the schema (http|https) that will be prefixed to all URLs.
     |
     */
-    'public_schema_override' => "",
+    'public_schema_override' => env("PUBLIC_SCHEMA_OVERRIDE", ""),
 
     /*
     |--------------------------------------------------------------------------
