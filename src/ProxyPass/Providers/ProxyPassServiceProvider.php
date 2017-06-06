@@ -46,7 +46,12 @@ class ProxyPassServiceProvider extends ServiceProvider
         // should there also be a schema override for HTTPS?
         $schemaOverride = "";
         if(!empty($_SERVER['SERVER_PORT'])) {
+            // check port as a first attempt
             $schemaOverride = ($_SERVER['SERVER_PORT'] == '443' ? "https" : "");
+        }
+        if(!empty($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+            // check standard LB request header
+            $schemaOverride = ($_SERVER['HTTP_X_FORWARDED_PROTO'] == "https" ? "https" : "");
         }
         if(!empty($urlOverride)) {
             // does the schema of the URL override begin with https?
@@ -78,7 +83,15 @@ class ProxyPassServiceProvider extends ServiceProvider
 		// override the public schema if an override exists
         $publicSchema = config("proxypass.public_schema_override");
         if(!empty($publicSchema)) {
-            URL::forceSchema($publicSchema);
+            if(method_exists('Illuminate\Routing\UrlGenerator', 'forceScheme')) {
+                // method name changed in Laravel 5.4
+                URL::forceScheme($publicSchema);
+            }
+            else
+            {
+                // Laravel version prior to 5.4
+                URL::forceSchema($publicSchema);
+            }
         }
 
         // override the public root URL if an override exists
