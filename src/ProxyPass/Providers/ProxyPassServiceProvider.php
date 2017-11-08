@@ -15,7 +15,11 @@ class ProxyPassServiceProvider extends ServiceProvider
             // to configure the root URL from the proxy headers
             $url_override = config('proxypass.public_url_override');
             if(empty($url_override)) {
-                $this->configureProxiedURLs();
+                // only configure overrides based upon whether the proxy is
+                // allowed to perform proxy operations
+                if($this->canProxy()) {
+                    $this->configureProxiedURLs();
+                }
             }
 
             // force the root URL and the schema based on the configuration
@@ -30,6 +34,54 @@ class ProxyPassServiceProvider extends ServiceProvider
     	]);
 	}
 
+    /**
+     * Returns whether the proxy server is allowed to perform proxy operations
+     * and affect how the URLs are generated.
+     *
+     * @return bool
+     */
+    private function canProxy() {
+        // grab the comma-delimited set of trusted proxies if they exist
+        $trustedProxies = Config::get('proxypass.trusted_proxies');
+        if(empty($trustedProxies)) {
+            // no proxies have been whitelisted so allow all proxy servers
+            return true;
+        }
+
+        // form an array and kill any whitespace in each element
+        $proxyArr = explode(",", $trustedProxies);
+        array_walk($proxyArr, 'trim');
+
+        // first we need to check the REMOTE_ADDR value to see if the IP
+        // address being reported matches one of the trusted proxies
+        if(!empty($_SERVER['REMOTE_ADDR'])) {
+            if(in_array($_SERVER['REMOTE_ADDR'], $proxyArr)) {
+                // the machine that made the request is a trusted proxy so
+                // everything is fine
+                return true;
+            }
+        }
+
+        // now we need to check the X-Forwarded-Server header if it exists
+        // since that's one of the three standard request headers that a
+        // proxy would pass along with a request
+        if(!empty($_SERVER['HTTP_X_FORWARDED_SERVER'])) {
+            if(in_array(trim($_SERVER['HTTP_X_FORWARDED_SERVER']), $proxyArr)) {
+                // the hostname of the proxy matches a trusted proxy so
+                // everything is fine
+                return true;
+            }
+        }
+
+        // we are either not behind a proxy or the proxy forwarding the request
+        // is not in the set of trusted proxies
+        return false;
+    }
+
+    /**
+     * Sets the overrides for the global scheme and base URL based on the
+     * headers received from the proxy server. 
+     */
 	private function configureProxiedURLs() {
         $urlOverride = "";
         $proxyHeader = Config::get(
@@ -79,6 +131,11 @@ class ProxyPassServiceProvider extends ServiceProvider
         }
 	}
 
+    /**
+     * Applies any set overrides for the global scheme and base URL. These
+     * overrides can come either from existing Laravel configuration or
+     * from the proxy itself.
+     */
 	private function forceProxiedURLs() {
 		// override the public schema if an override exists
         $publicSchema = config("proxypass.public_schema_override");

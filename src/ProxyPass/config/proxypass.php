@@ -49,4 +49,17 @@ return [
     */
     'proxy_path_header' => env("PROXY_PATH_HEADER", "HTTP_X_FORWARDED_PATH"),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Trusted Proxies
+    |--------------------------------------------------------------------------
+    |
+    | Comma-delimited list of the hostnames/IP addresses of proxy servers that
+    | are allowed to manipulate the scheme and base URL. If no trusted proxies
+    | have been set then proxying is allowed implicitly since this functions
+    | as a whitelist.
+    |
+    */
+    'trusted_proxies' => env("TRUSTED_PROXIES", ""),
+
 ];
