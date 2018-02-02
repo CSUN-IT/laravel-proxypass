@@ -1,4 +1,7 @@
 # Laravel Proxy Pass
+
+[![Latest Stable Version](https://poser.pugx.org/csun-metalab/laravel-proxypass/v/stable)](https://packagist.org/packages/csun-metalab/laravel-proxypass) [![Total Downloads](https://poser.pugx.org/csun-metalab/laravel-proxypass/downloads)](https://packagist.org/packages/csun-metalab/laravel-proxypass) [![License](https://poser.pugx.org/csun-metalab/laravel-proxypass/license)](https://packagist.org/packages/csun-metalab/laravel-proxypass)
+
 Composer package for Laravel that resolves the correct absolute URLs when behind a proxy.
 
 This package is built for version 5.0 of Laravel and above. It modifies the functionality
